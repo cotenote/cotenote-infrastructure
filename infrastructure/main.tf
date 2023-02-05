@@ -16,3 +16,8 @@ variable "availability_zones" {
     d = "ap-northeast-2d"
   }
 }
+
+# ========== VPC ========== #
+module "vpc" {
+  source = "../modules/vpc"
+}
