@@ -1,3 +1,3 @@
 output "id" {
-  value = aws_vpc.cotenote-vpc.id
+  value = aws_vpc.vpc.id
 }
