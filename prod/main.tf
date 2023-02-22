@@ -4,10 +4,10 @@ module "vpc" {
 }
 
 module "subnet" {
-  source             = "./modules/subnet"
-  project_name       = var.project_name
-  vpc_id             = module.vpc.id
-  availability_zones = var.availability_zones
+  source            = "./modules/subnet"
+  project_name      = var.project_name
+  vpc_id            = module.vpc.id
+  availability_zone = var.availability_zone
 }
 
 module "internet_gateway" {
@@ -21,8 +21,7 @@ module "route_table" {
   project_name        = var.project_name
   vpc_id              = module.vpc.id
   internet_gateway_id = module.internet_gateway.id
-  subnet_public_a_id  = module.subnet.public_a_id
-  subnet_public_b_id  = module.subnet.public_b_id
+  subnet_id           = module.subnet.id
 }
 
 module "security_group" {
@@ -37,12 +36,12 @@ module "key_pair" {
 }
 
 module "ec2" {
-  source                 = "./modules/ec2"
-  project_name           = var.project_name
-  stage                  = var.stage
-  availability_zones     = var.availability_zones
-  vpc_security_group_ids = [module.security_group.api_ec2_security_group_id]
-  subnet_id              = module.subnet.public_a_id
+  source            = "./modules/ec2"
+  project_name      = var.project_name
+  stage             = var.stage
+  availability_zone = var.availability_zone
+  security_group_id = module.security_group.id
+  subnet_id         = module.subnet.id
 }
 
 module "elastic_ip" {

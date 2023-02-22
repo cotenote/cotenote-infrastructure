@@ -3,21 +3,16 @@ variable "project_name" {
 }
 
 variable "vpc_id" {
-  description = "vpc_id"
-  type        = string
+  type = string
 }
 
 variable "internet_gateway_id" {
-  description = "internet_gateway_id"
-  type        = string
+  type = string
 }
 
-variable "subnet_public_a_id" {
-  description = "subnet_public_a_id"
-  type        = string
-}
-
-variable "subnet_public_b_id" {
-  description = "subnet_public_b_id"
-  type        = string
+variable "subnet_id" {
+  type = object({
+    public_a = string
+    public_b = string
+  })
 }

@@ -3,11 +3,10 @@ variable "project_name" {
 }
 
 variable "stage" {
-  description = "stage"
-  type        = string
+  type = string
 }
 
-variable "availability_zones" {
+variable "availability_zone" {
   type = object({
     a = string
     b = string
@@ -16,11 +15,15 @@ variable "availability_zones" {
   })
 }
 
-variable "vpc_security_group_ids" {
-  type = list(string)
+variable "security_group_id" {
+  type = object({
+    api_ec2 = string
+  })
 }
 
 variable "subnet_id" {
-  description = "subnet id"
-  type        = string
+  type = object({
+    public_a = string
+    public_b = string
+  })
 }

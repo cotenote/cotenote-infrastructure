@@ -7,7 +7,7 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "availability_zones" {
+variable "availability_zone" {
   description = "availability zones"
   type = object({
     a = string

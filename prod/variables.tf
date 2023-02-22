@@ -1,4 +1,4 @@
-variable "availability_zones" {
+variable "availability_zone" {
   type = object({
     a = string
     b = string
