@@ -30,4 +30,29 @@ resource "aws_security_group" "api_ec2_security_group" {
   }
 }
 
+resource "aws_security_group" "rds_security_group" {
+  name        = "${var.stage} ${var.project_name} rds"
+  description = "${var.stage} ${var.project_name} rds"
+  vpc_id      = var.vpc_id
 
+  ingress {
+    description = "Allow api ec2 MySQL inbound traffic"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["${data.aws_instance.api_ec2.public_ip}/32"]
+  }
+
+  egress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["${data.aws_instance.api_ec2.public_ip}/32"]
+  }
+
+  tags = {
+    Name = "${var.stage}-${var.project_name}-rds-security-group"
+  }
+
+  depends_on = [data.aws_instance.api_ec2]
+}

@@ -48,3 +48,11 @@ module "elastic_ip" {
   source      = "./modules/elastic_ip"
   instance_id = module.ec2.id
 }
+
+module "rds" {
+  source            = "./modules/rds"
+  project_name      = var.project_name
+  stage             = var.stage
+  security_group_id = module.security_group.id
+  subnet_id         = module.subnet.id
+}

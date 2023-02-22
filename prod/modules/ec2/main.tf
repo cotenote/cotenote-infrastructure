@@ -5,7 +5,7 @@ resource "aws_instance" "api_ec2" {
   vpc_security_group_ids = [var.security_group_id.api_ec2]
   availability_zone      = var.availability_zone.a
   subnet_id              = var.subnet_id.public_a
-  user_data              = file("modules/ec2/user_data/api_ec2.sh")
+  user_data              = file("modules/ec2/user_datas/api_ec2.sh")
 
   associate_public_ip_address = true
 
