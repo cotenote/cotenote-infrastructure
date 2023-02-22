@@ -28,3 +28,11 @@ module "route_table" {
   subnet_public_a_id  = module.subnet.public_a_id
   subnet_public_b_id  = module.subnet.public_b_id
 }
+
+# ========== Security Group ========== #
+module "security_group" {
+  source       = "../modules/security_group"
+  project_name = var.project_name
+  stage        = var.stage.prod
+  vpc_id       = module.vpc.id
+}
