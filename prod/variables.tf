@@ -19,12 +19,6 @@ variable "project_name" {
 }
 
 variable "stage" {
-  type = object({
-    prod = string
-    dev  = string
-  })
-  default = {
-    prod = "prod"
-    dev  = "dev"
-  }
+  type    = string
+  default = "prod"
 }
