@@ -44,3 +44,8 @@ module "ec2" {
   vpc_security_group_ids = [module.security_group.api_ec2_security_group_id]
   subnet_id              = module.subnet.public_a_id
 }
+
+module "elastic_ip" {
+  source      = "./modules/elastic_ip"
+  instance_id = module.ec2.id
+}
